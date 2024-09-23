@@ -10,7 +10,8 @@ function App() {
   const [allCards] = useFlashcards();
   const totalCards = allCards.length;
   const [curCardId, setCurCardId] = useState(1);
-
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  
   let goToPrev = () => {
     if ( isValidId(curCardId - 1)) {
       setCurCardId(curCardId - 1);
@@ -33,10 +34,14 @@ function App() {
     return ( id <= totalCards && id >= 1);
   }
 
+  const toggleTheme = () => {
+    setIsDarkMode(prevMode => !prevMode);
+  };
+
   return (
     <>
-    <Toolbar></Toolbar>
-    <Container className="container-main">
+    <Toolbar isDarkMode={isDarkMode} toggleTheme={toggleTheme}></Toolbar>
+    <Container className={`container-main ${isDarkMode ? 'dark' : 'light'}`}>
       <Card {...allCards.find(item=> item.id === curCardId)}></Card>
       <div className="action-buttons">
         <Button variant="warning" className="me-4 prev-next-btns" onClick={goToPrev}>Prev</Button>
