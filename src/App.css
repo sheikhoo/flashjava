@@ -35,7 +35,7 @@
 }
 
 .front {
-  font-size: 30px;
+  font-size: 18px;
   font-weight: bold;
   display: flex;
   flex-direction: column;
@@ -47,7 +47,7 @@
 }
 
 .front p:first-child {
-  background-color: green;
+  background: linear-gradient(90deg, rgb(176, 39, 55) 0%, rgb(184, 50, 65) 5%, rgb(248, 30, 33) 100%);
   color: white;
   width: 50px;
   border-radius: 50px;
