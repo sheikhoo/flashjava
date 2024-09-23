@@ -1,5 +1,5 @@
 import './App.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Card from './components/Card';
 import Toolbar from './components/Toolbar';
 import Container from 'react-bootstrap/Container';
@@ -10,8 +10,15 @@ function App() {
   const [allCards] = useFlashcards();
   const totalCards = allCards.length;
   const [curCardId, setCurCardId] = useState(1);
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    const savedTheme = localStorage.getItem('darkMode');
+    return savedTheme === 'true';
+  });
   
+  useEffect(() => {
+    localStorage.setItem('darkMode', isDarkMode);
+  }, [isDarkMode]);
+
   let goToPrev = () => {
     if ( isValidId(curCardId - 1)) {
       setCurCardId(curCardId - 1);
